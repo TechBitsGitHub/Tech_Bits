@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *
+        {
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        #body
+        {
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            background-repeat:no-repeat;
+            width:100%;
+            height:100%;
+            text-align:center;
+            background-attachment: fixed;
+        }
+        #logoImg
+        {
+            height: 40px;
+            filter: drop-shadow(4px 4px 3px black);
+        }
+        #logoBut
+        {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+            background: none;
+            border: none;
+            outline: none;
+        }
+        #tech
+        {
+            color: white;
+            font-size: 40px;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5px;
+            font-size:35px;
+            font-family: 'Alegreya Sans SC', sans-serif;
+        }
+        #upBack
+        {
+            width: 100%;
+            margin-top: 25px;
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            border-radius: 50px;
+            box-shadow: 2px 2px 10px, -1px -1px 10px;
+            border: 0.1px solid rgb(41, 39, 39);
+            margin-bottom: 50px;
+        }
+        #pull
+        {
+            background: #17181C;
+            box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            width: 40px;
+            height: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        #btn
+        {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 150px;
+        }
+        .btns
+        {
+            width: 250px;
+            height: 70px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 5px 5px 20px black, -5px -5px 20px black;
+            margin-bottom: 100px;
+            margin: 15px;
+            font-size: 23px;
+            color: white;
+            outline: none;
+        }
+        .btns:active
+        {
+            box-shadow: none;
+            color: rgb(44, 44, 44);
+        }
+        .ham
+        {
+            outline: none;
+            border: none;
+            height: 30px;
+            width: 45px;
+            position: absolute;
+            right: 20px;
+            border-radius: 30%;
+            background: #353A40;
+            box-shadow:1px 1px 8px black, -1px -1px 8px black;
+            border: 1px solid black;
+            z-index: 10;
+        }
+        .ham:active
+        {
+            box-shadow: none;
+        }
+        #hamV
+        {
+            position: absolute;
+            top: 75px;
+            font-family: 'Lato', sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO
+        {
+            outline: none;
+            font-size: 20px;
+            width: 200px;
+            height: 60px;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(19, 18, 18);
+            border: none;
+            color:white;
+            font-weight: bold;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO:active
+        {
+            background-color: rgb(34, 34, 34);
+        }
+    </style>
+</head>
+<body id="body">
+    <button onclick="showHam();" class="ham">
+        <div style="height: 3px; width: 65%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+        <div style="height: 3px; width: 40%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+    </button>
+    <div id="hamV">
+        <button class="hamVO" onclick="Land();">Home</button>
+        <button class="hamVO" onclick="iTS();">Image To Speech</button>
+        <button class="hamVO" onclick="iTT();">Image To Text</button>
+        <button class="hamVO" onclick="tTS();">Text To Speech</button>
+        <button class="hamVO" onclick="help();">Help</button>
+        <button class="hamVO" onclick="aboutUs();">About Us</button>
+        <button class="hamVO" onclick="contact1();">Contact Us</button>
+        <button class="hamVO" onclick="feedback();">Feedback</button>
+    </div>
+    <div id="logoOut" style="margin-top: 20px; margin-left: 20px; width: 40px;">
+        <button id="logoBut" onclick="shad1();"><img id="logoImg" src="logo1.png"></button>
+    </div>
+    <span id="tech">
+        <span style="color: white;">TECH </span><span style="color: #41BBFF;">BIT'S</span>
+    </span>
+    <div id="upBack" style="font-family: 'Lato', sans-serif;">
+        <div id="pull"></div>
+        <div id="btn">
+            <div>
+                <button onclick="iTS();" class="btns" style="background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);">Image To Speech</button>
+            </div>
+            <div>
+                <button onclick="iTT();" class="btns" style="background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);">Image To Text</button>
+            </div>
+            <div>
+                <button onclick="tTS();" class="btns" style="background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);">Text To Speech</button>
+            </div>
+            <div>
+                <button class="btns" style="background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);">Coming Soon...</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var tra;
+        function tra1()
+        {
+            tra=0;
+        }
+        window.onload=tra1();
+        function Land()
+        {
+            window.open('index.html','_top');
+        }
+        function iTS()
+        {
+            window.open('I2S.html','_top');
+        }
+        function iTT()
+        {
+            window.open('I2T.html','_top');
+        }
+        function tTS()
+        {
+            window.open('T2S.html','_top');
+        }
+        function aboutUs()
+        {
+            window.open('About.html','_top');
+        }
+        function help()
+        {
+            window.open('help.html','_top');
+        }
+        function contact1()
+        {
+            window.open("mailto:itstechbits@gmail.com");
+        }
+        function feedback()
+        {
+            window.open('https://forms.gle/1i8ahUkddcVEwXTg7','_target');
+        }
+        function shad1()
+        {
+            var s=document.getElementById('logoImg');
+            s.style.filter='none';
+            window.open('index.html','_top');
+        }
+        function showHam()
+        {
+            var showHam1,showHam2,upBack1,i;
+            showHam1=document.getElementsByClassName("hamVO");
+            showHam2=document.getElementById("hamV");
+            upBack1=document.getElementById("upBack");
+            if(tra==0)
+            {
+                showHam2.style.visibility="visible";
+                upBack1.style.filter="blur(60px)"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="visible";
+                }
+                tra=1;
+            }
+            else
+            {
+                showHam2.style.visibility="hidden";
+                upBack1.style.filter="none"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="hidden";
+                }
+                tra=0;
+            }
+        }
+    </script>
+</body>
+</html>

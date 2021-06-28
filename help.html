@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <title>Document</title>
+    <style>
+        *
+        {
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        #body
+        {
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            background-repeat:no-repeat;
+            width:100%;
+            height:100%;
+            text-align:center;
+            background-attachment: fixed;
+        }
+        #logoImg
+        {
+            height: 100%;
+            filter: drop-shadow(4px 4px 3px black);
+        }
+        #logoBut
+        {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+            background: none;
+            border: none;
+            outline: none;
+        }
+        #tech
+        {
+            color: white;
+            font-size: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5px;
+            font-size:35px;
+            font-family: 'Alegreya Sans SC', sans-serif;
+        }
+        #upBack
+        {
+            width: 100%;
+            margin-top: 25px;
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            border-radius: 50px;
+            box-shadow: 2px 2px 10px,-1px -1px 10px;
+            border: 0.1px solid rgb(41, 39, 39);
+            margin-bottom: 50px;
+        }
+        #pull
+        {
+            background: #17181C;
+            box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            width: 40px;
+            height: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        #playW
+        {
+            width: 80%;
+            height: 45px;
+            background-color: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 35px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            box-shadow: 0.5px 0.5px 15px black, -0.5px -0.5px 15px black;
+        }
+        .imgC
+        {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+        }
+        .imgC1
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 54px;
+            width: 54px;
+            margin: auto;
+            background: linear-gradient(318.21deg, #11A8FD 14.05%, #0081C9 85.29%);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 2;
+        }
+        .imgC2
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 55px;
+            width: 55px;
+            background: linear-gradient(320.66deg, #11A8FD -37.99%, #0081C9 32.07%);
+            filter: blur(1px);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 3;
+        }
+        .imgC3
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 51px;
+            width: 51px;
+            background: linear-gradient(320.66deg, #005EA3 85.6%, #11A8FD 155.65%);
+            filter: blur(1px);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 4;
+        }
+        .imgC4
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 51px;
+            width: 51px;
+            background: linear-gradient(320.66deg, #005EA3 13.74%, #11A8FD 83.8%);
+            border: 1px solid #058DD9;
+            box-sizing: border-box;
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 5;
+        }
+        .imgI
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 2px;
+            margin: auto;
+            height: 85%;
+            z-index: 6;
+        }
+        .ham
+        {
+            outline: none;
+            border: none;
+            height: 30px;
+            width: 45px;
+            position: absolute;
+            right: 20px;
+            border-radius: 30%;
+            background: #353A40;
+            box-shadow:1px 1px 8px black, -1px -1px 8px black;
+            border: 1px solid black;
+            z-index: 10;
+        }
+        .ham:active
+        {
+            box-shadow: none;
+        }
+        #hamV
+        {
+            position: absolute;
+            top: 75px;
+            font-family: 'Lato', sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO
+        {
+            outline: none;
+            font-size: 20px;
+            width: 200px;
+            height: 60px;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(19, 18, 18);
+            border: none;
+            color:white;
+            font-weight: bold;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO:active
+        {
+            background-color: rgb(34, 34, 34);
+        }
+        .help
+        {
+            width: 80%;
+            height: 100%;
+            padding: 0px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 100px;
+            color: white;
+            font-size: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body id="body">
+    <button onclick="showHam();" class="ham">
+        <div style="height: 3px; width: 65%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+        <div style="height: 3px; width: 40%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+    </button>
+    <div id="hamV">
+        <button class="hamVO" onclick="Land();">Home</button>
+        <button class="hamVO" onclick="iTS();">Image To Speech</button>
+        <button class="hamVO" onclick="iTT();">Image To Text</button>
+        <button class="hamVO" onclick="tTS();">Text To Speech</button>
+        <button class="hamVO" onclick="help();">Help</button>
+        <button class="hamVO" onclick="aboutUs();">About Us</button>
+        <button class="hamVO" onclick="contact1();">Contact Us</button>
+        <button class="hamVO" onclick="feedback();">Feedback</button>
+    </div>
+    <div id="logoOut" style="margin-top: 20px; position: relative;">
+        <button id="logoBut" onclick="shad1();"><img id="logoImg" src="logo1.png"></button>
+        <span id="tech">
+            <span style="color: white;">TECH </span><span style="color: #41BBFF;">BIT'S</span>
+        </span>
+    </div>
+    <div id="upBack" style="font-family: 'Lato', sans-serif;" style="padding-bottom: 4000px;">
+        <div id="pull"></div>
+        <div id="playW">
+            <div class="imgCOut">
+            <div class="imgC" style="border-radius: 50%; height: 56px; width: 56px; box-shadow: -1px -1px 10px black, 1px 1px 10px black;">
+                <div class="imgC1"></div>
+                <div class="imgC2"></div>
+                <div class="imgC3"></div>
+                <div class="imgC4"></div>
+                <img src="techBlack.png" class="imgI">
+            </div>
+            </div>
+            <span style="position: absolute; left: 15%; color: white; font-size: 22px; font-family: 'Lato', sans-serif;">Help</span>
+        </div>
+            <img src="FAQ.png" style="width: 120px;margin-top: 50px; filter: drop-shadow(15px 15px 5px black);">
+            <div class="help">
+                <b style="color: #41BBFF; font-size: 20px;">FAQs</b><br><br>
+                1) Can we drag and drop image?<br>
+                Ans :- Yes.
+                <br><br>
+                2) What should be the format of image?<br>
+                Ans :-jpg/jpeg/png (ex:- image.jpg , image.jpeg , image.png ).
+                <br><br>
+                3) Can we use the generated text to speech files in our commercial work?<br>
+                Ans  :- Yes.
+                <br><br>
+                4) Above FAQ Doesn’t solved your problem ?<br>
+                Ans  :-  There are some options for you to try -<br><br>
+                1)Try to upgrade your current browser to the latest stable version, then try again.<br><br>  
+                2)Try to use on different browsers. For example if you have issues with Chrome, please try to use Firefox and vice versa.<br><br>
+                3)If above solutions doesn't work for you, please contact us with some detail information about your OS (operating system) & browser version.<br><br>
+                <span>Contact Us: itstechbits@gmail.com</span>
+            </div>
+    </div>
+    <script>
+        var tra;
+        function tra1()
+        {
+            tra=0;
+        }
+        window.onload=tra1();
+        function shad1()
+        {
+            var s=document.getElementById('logoImg');
+            s.style.filter='none';
+            window.open('index.html','_top');
+        }
+        function Land()
+        {
+            window.open('index.html','_top');
+        }
+        function iTS()
+        {
+            window.open('I2S.html','_top');
+        }
+        function iTT()
+        {
+            window.open('I2T.html','_top');
+        }
+        function tTS()
+        {
+            window.open('T2S.html','_top');
+        }
+        function aboutUs()
+        {
+            window.open('About.html','_top');
+        }
+        function help()
+        {
+            window.open('help.html','_top');
+        }
+        function contact1()
+        {
+            window.open("mailto:itstechbits@gmail.com");
+        }
+        function feedback()
+        {
+            window.open('https://forms.gle/1i8ahUkddcVEwXTg7','_target');
+        }
+        function showHam()
+        {
+            var showHam1,showHam2,upBack1,i;
+            showHam1=document.getElementsByClassName("hamVO");
+            showHam2=document.getElementById("hamV");
+            upBack1=document.getElementById("upBack");
+            if(tra==0)
+            {
+                showHam2.style.visibility="visible";
+                upBack1.style.filter="blur(30px)"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="visible";
+                }
+                tra=1;
+            }
+            else
+            {
+                showHam2.style.visibility="hidden";
+                upBack1.style.filter="none"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="hidden";
+                }
+                tra=0;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <title>Document</title>
+    <style>
+        *
+        {
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        #body
+        {
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            background-repeat:no-repeat;
+            width:100%;
+            height:100%;
+            text-align:center;
+            background-attachment: fixed;
+        }
+        #logoImg
+        {
+            height: 100%;
+            filter: drop-shadow(4px 4px 3px black);
+        }
+        #logoBut
+        {
+            height: 40px;
+            position: absolute;
+            left: 10px;
+            background: none;
+            border: none;
+            outline: none;
+        }
+        #tech
+        {
+            color: white;
+            font-size: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5px;
+            font-size:35px;
+            font-family: 'Alegreya Sans SC', sans-serif;
+        }
+        #upBack
+        {
+            width: 100%;
+            margin-top: 25px;
+            background: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            border-radius: 50px;
+            box-shadow: 2px 2px 10px, -1px -1px 10px;
+            border: 0.1px solid rgb(41, 39, 39);
+            margin-bottom: 50px;
+        }
+        #pull
+        {
+            background: #17181C;
+            box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            width: 40px;
+            height: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+        #playW
+        {
+            width: 80%;
+            height: 45px;
+            background-color: linear-gradient(180deg, #353A40 0%, #16171B 100%);
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 35px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            box-shadow: 0.5px 0.5px 15px black, -0.5px -0.5px 15px black;
+        }
+        .imgC
+        {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+        .imgC1
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 54px;
+            width: 54px;
+            margin: auto;
+            background: linear-gradient(318.21deg, #11A8FD 14.05%, #0081C9 85.29%);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 2;
+        }
+        .imgC2
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 55px;
+            width: 55px;
+            background: linear-gradient(320.66deg, #11A8FD -37.99%, #0081C9 32.07%);
+            filter: blur(1px);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 3;
+        }
+        .imgC3
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 51px;
+            width: 51px;
+            background: linear-gradient(320.66deg, #005EA3 85.6%, #11A8FD 155.65%);
+            filter: blur(1px);
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 4;
+        }
+        .imgC4
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 50%;
+            height: 51px;
+            width: 51px;
+            background: linear-gradient(320.66deg, #005EA3 13.74%, #11A8FD 83.8%);
+            border: 1px solid #058DD9;
+            box-sizing: border-box;
+            border-radius: 100px;
+            transform: rotate(-180deg);
+            z-index: 5;
+        }
+        .imgI
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 2px;
+            margin: auto;
+            height: 85%;
+            z-index: 6;
+        }
+        #file
+        {
+            opacity: 0%;
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border-radius: 50%;
+        }
+        #get
+        {
+            width: 50px;
+            height: 70px;
+            border: none;
+            border-radius: 20px;
+            padding-top: 4px;
+            font-size: 17px;
+            margin-top: 30px;
+            background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);
+            outline: none;
+            color: white;
+            box-shadow: -5px -5px 20px #000000, 5px 5px 20px black;
+        }
+        #get:active
+        {
+            box-shadow: none;
+            color: rgb(44, 44, 44);
+        }
+        #sto
+        {
+            background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);
+            width: 80%;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 150px;
+            box-shadow: -5px -5px 20px #000000, 5px 5px 20px black;
+        }
+        #sto:active
+        {
+            box-shadow: none;
+            color: rgb(44, 44, 44);
+        }
+        .ham
+        {
+            outline: none;
+            border: none;
+            height: 30px;
+            width: 45px;
+            position: absolute;
+            right: 20px;
+            border-radius: 30%;
+            background: #353A40;
+            box-shadow:1px 1px 8px black, -1px -1px 8px black;
+            border: 1px solid black;
+            z-index: 10;
+        }
+        .ham:active
+        {
+            box-shadow: none;
+        }
+        #hamV
+        {
+            position: absolute;
+            top: 75px;
+            font-family: 'Lato', sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO
+        {
+            outline: none;
+            font-size: 20px;
+            width: 200px;
+            height: 60px;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(19, 18, 18);
+            border: none;
+            color:white;
+            font-weight: bold;
+            z-index: 10;
+            visibility: hidden;
+        }
+        .hamVO:active
+        {
+            background-color: rgb(34, 34, 34);
+        }
+        #copyT
+        {
+            outline: none;
+            border: none;
+            height: 20px;
+            width: 50px;
+            background: linear-gradient(5.99deg, #11A8FD 3.12%, #0071B6 36.15%, #005EA3 93.71%);
+            color: white;
+            box-shadow: -3px -3px 15px #000000, 3px 3px 15px black;
+            border-radius: 6px;
+            margin-left: 0px;
+            margin-right: 64%;
+            margin-top: 20px;
+            font-size: 10px;
+            visibility: hidden;
+        }
+        #copyT:active
+        {
+            box-shadow: none;
+            color: rgb(44, 44, 44);
+        }
+    </style>
+</head>
+<body id="body">
+    <button onclick="showHam();" class="ham">
+        <div style="height: 3px; width: 65%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+        <div style="height: 3px; width: 40%; background-color: rgb(206, 200, 200); margin-right: 6px; margin-top: 2px; margin-bottom: 2px; border-radius: 5px; float: right;"></div>
+    </button>
+    <div id="hamV">
+        <button class="hamVO" onclick="Land();">Home</button>
+        <button class="hamVO" onclick="iTS();">Image To Speech</button>
+        <button class="hamVO" onclick="iTT();">Image To Text</button>
+        <button class="hamVO" onclick="tTS();">Text To Speech</button>
+        <button class="hamVO" onclick="help();">Help</button>
+        <button class="hamVO" onclick="aboutUs();">About Us</button>
+        <button class="hamVO" onclick="contact1();">Contact Us</button>
+        <button class="hamVO" onclick="feedback();">Feedback</button>
+    </div>
+    <div id="logoOut" style="margin-top: 20px; position: relative;">
+        <button id="logoBut" onclick="shad1();"><img id="logoImg" src="logo1.png"></button>
+        <span id="tech">
+            <span style="color: white;">TECH </span><span style="color: #41BBFF;">BIT'S</span>
+        </span>
+    </div>
+    <div id="upBack" style="font-family: 'Lato', sans-serif;">
+        <div id="pull"></div>
+        <div id="playW">
+            <div class="imgCOut">
+            <div class="imgC" style="border-radius: 50%; height: 56px; width: 56px; box-shadow: -1px -1px 10px black, 1px 1px 10px black;">
+                <div class="imgC1"></div>
+                <div class="imgC2"></div>
+                <div class="imgC3"></div>
+                <div class="imgC4"></div>
+                <img src="techBlack.png" class="imgI">
+            </div>
+            </div>
+            <span style="position: absolute; left: 15%; color: white; font-size: 22px; font-family: 'Lato', sans-serif;">Image To Speech</span>
+        </div>
+        <div style="display: flex; justify-content: center; width: 80%; margin-left: auto; margin-right: auto; margin-top: 20px;">
+        <div class="imgC" id="btnShad" style="margin-right: 10%; height: 56px;width: 56px; border-radius: 50%; margin-top: 30px;  box-shadow: -1px -1px 20px #000000, 1px 1px 20px black; display: inline-block;">
+            <button id="btn"></button>
+                <div class="imgC1"></div>
+                <div class="imgC2"></div>
+                <div class="imgC3"></div>
+                <div class="imgC4"></div>
+                <img src="galC.png" class="imgI" style="height: 55%; right: 5px; bottom: 1px;">
+                <input type="file" onclick="shad();" name="image" id="file" onchange="gImage(event)">
+            </button>
+        </div>
+        <div style="display: inline-block; width: 202px;">
+            <div id="imgLoad" style="color: white; font-size: 10px; margin-top: 30px;">
+                Uploaded Image Will Be Displayed Below
+            </div>
+            <p style="width: 200px; border-radius: 5px; box-shadow: 1px 1px 10px, -1px -1px 10px; margin-top: 10px; border: 1px solid black; margin-left: auto; margin-right: auto;"><img id="showImg" width="100%" /></p>
+            </div>
+        </div>
+        <div id="load1" style="color: white; font-size: 10px; margin-top: 45px;">
+            Generated Text Will Be Displayed Below<br>
+            ( Internet Connection Required )
+        </div>
+        <p id="oText" style="width: 80%; background: none; outline: none; color: white; border-radius: 5px; box-shadow: 1px 1px 10px black, -1px -1px 10px black; margin-top: 10px; border: 1px solid black; padding: 10px; margin-left: auto; margin-right: auto;"></p>
+        <button id="copyT" onclick="copy1();">Copy</button>
+        <div style="height: 160px;width: 80%; margin-left: auto;margin-right: auto; display: flex; justify-content: center; align-items: center;">
+            <div style="margin-right: 20%; display: flex; flex-direction: column;">
+            <div style="display: inline-block; width: 182px;">
+                <label>
+                    <br>
+                    <span style="color: white;">Rate</span>
+                    <br>
+                    <input type="range" class="slider" id="rate" min="0" max="1" value="0.5" step="0.1" style="width: 180px;">
+                </label>
+            </div>
+            <div style="display: inline-block; width: 182px;">
+                <label>
+                    <br>
+                    <span style="color: white;">Pitch</span>
+                    <br>
+                    <input type="range" class="slider" id="pitch" min="0" max="2" value="1" step="0.1" style="width: 180px;">
+                </label>
+            </div>
+            </div>
+            <button onclick="speak(1);" id="get"><img src="play2.png" id="playButton" style="width: 100%; margin: auto;"></button>
+            </div>
+            <button onclick="stop1();" id="sto">Reset</button>
+    </div>
+    <script>
+        var tra;
+        var text2;
+        var oText=document.getElementById('oText');
+        var ourRate=document.getElementById('rate');
+        var ourPitch=document.getElementById('pitch');
+        var playButton=document.getElementById('playButton');
+        var load1=document.getElementById('load1');
+        var imgLoad=document.getElementById('imgLoad');
+        var cop=document.getElementById('copyT');
+        function tra1()
+        {
+            tra=0;
+            speak(0);
+        }
+        window.onload=tra1();
+        var text2;
+        function loading()
+        {
+            var inter=setInterval(() => {
+                if(oText.innerHTML=="")
+                {
+                    load1.innerHTML='Generating Text...';
+                    cop.innerHTML="Copy";
+                    cop.style.visibility="hidden";
+                }
+                else
+                {
+                    load1.innerHTML='Text Generated Succesfully !';
+                    clearInterval(inter);
+                    cop.style.visibility="visible";
+                    cop.innerHTML="Copy";
+                }
+            }, 10);
+        }
+        function gImage(event)
+        {
+            oText.innerHTML="";
+            imgLoad.innerHTML='Uploaded Image';
+            loading();
+            var image = document.getElementById('showImg');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            Tesseract.recognize(image.src,'eng').then(({ data: { text } }) =>
+            {
+                document.getElementById("oText").innerHTML=text;
+                text2=document.getElementById("oText").innerHTML;
+                text2=text.replace(/(\r\n|\n|\r)/gm,' ');
+            });
+        }
+        function speak(a)
+        {
+            var ourText=new SpeechSynthesisUtterance();
+            ourText.text=text2;
+            ourText.rate=ourRate.value;
+            ourText.pitch=ourPitch.value;
+            ourText.voice=speechSynthesis.getVoices()[1];
+            ourText.lang='en_US';
+            if(a==1)
+            {
+                speak1(ourText);
+            }
+        }
+        function speak1(ourText)
+        {
+            if(speechSynthesis.speaking)
+            {
+                if(speechSynthesis.paused)
+                {
+                    speechSynthesis.resume();
+                    playButton.src='play1.png';
+                }
+                else
+                {
+                    speechSynthesis.pause();
+                    playButton.src='play2.png';
+                }
+            }
+            else
+            {
+                if(oText.innerHTML!="")
+                {
+                    speechSynthesis.speak(ourText);
+                    playButton.src='play1.png';
+                }
+            }
+            setInterval(() => {
+                if(!(speechSynthesis.speaking))
+                {
+                    speechSynthesis.cancel();
+                    playButton.src='play2.png';
+                }
+            },10);
+        }
+        function stop1()
+        {
+            speechSynthesis.cancel();
+            playButton.src='play2.png';
+            ourRate.value='0.5';
+            ourPitch.value='1';
+        }
+        function shad()
+        {
+            var s=document.getElementById('btnShad');
+            s.style.boxShadow='none';
+            setTimeout(function(){
+            var s=document.getElementById('btnShad');
+            s.style.boxShadow='-1px -1px 20px #000000, 1px 1px 20px black';
+        },200);
+        }
+        function shad1()
+        {
+            var s=document.getElementById('logoImg');
+            s.style.filter='none';
+            window.open('index.html','_top');
+        }
+        function Land()
+        {
+            window.open('index.html','_top');
+        }
+        function iTS()
+        {
+            window.open('I2S.html','_top');
+        }
+        function iTT()
+        {
+            window.open('I2T.html','_top');
+        }
+        function tTS()
+        {
+            window.open('T2S.html','_top');
+        }
+        function aboutUs()
+        {
+            window.open('About.html','_top');
+        }
+        function help()
+        {
+            window.open('help.html','_top');
+        }
+        function contact1()
+        {
+            window.open("mailto:itstechbits@gmail.com");
+        }
+        function feedback()
+        {
+            window.open('https://forms.gle/1i8ahUkddcVEwXTg7','_target');
+        }
+        function showHam()
+        {
+            var showHam1,showHam2,upBack1,i;
+            showHam1=document.getElementsByClassName("hamVO");
+            showHam2=document.getElementById("hamV");
+            upBack1=document.getElementById("upBack");
+            if(tra==0)
+            {
+                showHam2.style.visibility="visible";
+                upBack1.style.filter="blur(30px)"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="visible";
+                }
+                tra=1;
+            }
+            else
+            {
+                showHam2.style.visibility="hidden";
+                upBack1.style.filter="none"
+                for(i=0;i<=7;i++)
+                {
+                    showHam1[i].style.visibility="hidden";
+                }
+                tra=0;
+            }
+        }
+        function copy1()
+        {
+            navigator.clipboard.writeText(text2);
+            cop.innerHTML="Copied";
+        }
+    </script>
+</body>
+</html>
